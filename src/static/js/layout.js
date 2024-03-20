@@ -1,1 +1,1 @@
-alert("hello world");
+console.log("accediendo al archivo layout.js");

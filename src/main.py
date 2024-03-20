@@ -17,8 +17,18 @@ def index():
 
     return render_template('index.html', data=data)
 
+@app.route('/contacto/<nombre>/<int:age>')
+def contacto(nombre, age):
+    data = {
+        'title': 'Contact',
+        'name': nombre,
+        'age': age
+    }
+    return render_template('contacto.html', data=data)
+
 def main():
-    app.run(debug=True, port=int(os.environ.get('PORT', 80)))
+    # app.run(debug=True, port=int(os.environ.get('PORT', 80)))
+    app.run(debug=True, port=5000)
 
 if __name__ == "__main__":
     main()
