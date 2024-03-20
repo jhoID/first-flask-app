@@ -6,10 +6,15 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
+    courses = ['PHP', 'Python', 'Rust', 'JavaScript']
+    # courses = []
     data = {
-        'titulo': 'Index',
-        'bienvenida': 'Saludos'
+        'title': 'Here we go',
+        'greetings': 'greetings',
+        'courses': courses,
+        'number_courses': len(courses)
     }
+
     return render_template('index.html', data=data)
 
 def main():
