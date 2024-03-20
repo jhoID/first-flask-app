@@ -1,0 +1,19 @@
+{% extends './layout.html' %}
+
+{% block title %}
+    {{ data.title }}
+{% endblock %}
+
+{% block body %}
+  {% if data.number_courses > 0 %}
+  
+    <ul>
+      {% for c in data.courses %}
+      <li>{{c}}</li>
+      {% endfor %}
+    </ul>
+
+  {% else %}
+    <p>No courses found</p>
+  {% endif %}
+{% endblock %}

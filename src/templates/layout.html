@@ -3,27 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Flask app</title>
+    <title> {% block title %} {% endblock %} </title>
   </head>
 
   <body>
     <h1>My first app with flask</h1>
+    {% block body %} {% endblock %}
     
-    <h2>
-      {{data.title}}
-    </h2>
-    
-    {% if data.number_courses > 0 %}
-  
-      <ul>
-        {% for c in data.courses %}
-        <li>{{c}}</li>
-        {% endfor %}
-      </ul>
-
-    {% else %}
-      <p>No courses found</p>
-    {% endif %}
-
   </body>
 </html>
