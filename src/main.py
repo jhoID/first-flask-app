@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, send_file, render_template, request
+from flask import Flask, send_file, render_template, request, url_for, redirect
 
 app = Flask(__name__)
 
@@ -35,7 +35,8 @@ def query_string():
     return 'OK'
 
 def page_not_found(err):
-    return render_template('404.html'), 404
+    # return render_template('404.html'), 404
+    return redirect(url_for('index'))
 
 def main():
     # app.run(debug=True, port=int(os.environ.get('PORT', 80)))
