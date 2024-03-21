@@ -4,6 +4,15 @@ from flask import Flask, send_file, render_template, request, url_for, redirect
 
 app = Flask(__name__)
 
+@app.before_request
+def before_request():
+    print("Before the request ...")
+
+@app.after_request
+def after_request(response):
+    print("After the request")
+    return response
+
 @app.route("/")
 def index():
     courses = ['PHP', 'Python', 'Rust', 'JavaScript']
