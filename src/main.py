@@ -34,10 +34,14 @@ def query_string():
     print(request.args.get('param2'))
     return 'OK'
 
+def page_not_found(err):
+    return render_template('404.html'), 404
+
 def main():
     # app.run(debug=True, port=int(os.environ.get('PORT', 80)))
+    app.add_url_rule('/query', view_func=query_string)
+    app.register_error_handler(404, page_not_found)
     app.run(debug=True, port=5000)
 
 if __name__ == "__main__":
-    app.add_url_rule('/query', view_func=query_string)
     main()
