@@ -1,8 +1,16 @@
 import os
-
-from flask import Flask, send_file, render_template, request, url_for, redirect
+from flask import Flask, send_file, render_template, request, url_for, redirect, jsonify
+from flask_mysqldb import MySQL
 
 app = Flask(__name__)
+
+# Conexion MYSQL
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = 'root'
+app.config['MYSQL_DB'] = 'universidad'
+ 
+conexion = MySQL(app)
 
 @app.before_request
 def before_request():
@@ -42,6 +50,20 @@ def query_string():
     print(request.args.get('param1'))
     print(request.args.get('param2'))
     return 'OK'
+
+@app.route('/cursos')
+def list_courses():
+    data = {}
+    try:
+        cursor=conexion.conection.cursor()
+        cursor.execute("select * from cursos;")
+        courses = cursor.fetchall()
+        # print(courses)
+        data['mensaje'] = 'Exito'
+        data['cursos'] = courses
+    except Exception as ex:
+        data['mensaje'] = 'Error...'
+    return jsonify(data)
 
 def page_not_found(err):
     # return render_template('404.html'), 404
